@@ -7,8 +7,8 @@ CustomDateTimePicker is a A simple Android library for displaying a DateAndTimeP
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/noowenz/CustomDateTimePicker/master/art/noowenz/customdatetimepickerbefore.png" width="300px" />
-<img src="https://raw.githubusercontent.com/noowenz/CustomDateTimePicker/master/art/noowenz/customdatetimepickerafter.png" width="300px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbefore.png" width="300px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerafter.png" width="300px" />
 
 ## Installation
 
@@ -37,7 +37,7 @@ can just do this:
 		.setDate( Calendar.getInstance())
 		.showDialog()
 		    
-You can see this in action in the sample app [here](https://https://github.com/noowenz/CustomDateTimePicker/blob/master/sample/src/main/java/com/noowenz/customdatetimepicker/MainActivity.kt#L16)
+You can see this in action in the sample app [here](https://github.com/noowenz/CustomDateTimePicker/blob/master/sample/src/main/java/com/noowenz/customdatetimepicker/MainActivity.kt)
 
 ## Customization
       
