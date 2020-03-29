@@ -1,5 +1,4 @@
-[![](https://jitpack.io/v/adawoud/BottomSheetTimeRangePicker.svg)](https://jitpack.io/#adawoud/BottomSheetTimeRangePicker)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-BottomSheetTimeRangePicker-green.svg?style=flat )]( https://android-arsenal.com/details/1/7367 )
+[![](https://jitpack.io/v/noowenz/CustomDateTimePicker.svg)](https://jitpack.io/#noowenz/CustomDateTimePicker)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # CustomDateTimePicker
 
