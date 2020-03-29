@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CustomDateTimePicker</string>
+    <string name="pick_date_and_time">Pick Date and Time</string>
+    <string name="selected_date_and_time">Selected date and time:</string>
+    <string name="selected_date_and_time_will_appear_here">Selected date and time will appear here</string>
+    <string name="set_24hr_format">Set 24hr format</string>
+    <string name="show_previously_selected_date_in_picker">Show previously selected date time in picker</string>
+    <string name="you_can_preset_your_min_and_max_date_and_time_range_according_to_requirement">You can preset your MIN and MAX DATE and TIME range according to requirement programmatically like: \n
+    setMaxMinDisplayDate(5min, 1year) \n setMaxMinDisplayedTime(5min, 0min)"</string>
+</resources>

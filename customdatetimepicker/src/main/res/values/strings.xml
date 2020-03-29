@@ -1,0 +1,8 @@
+<resources>
+    <string name="setDate">Set Date</string>
+    <string name="setTime">Set Time</string>
+    <string name="set">Set</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+</resources>

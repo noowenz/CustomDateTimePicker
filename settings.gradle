@@ -1,0 +1,3 @@
+rootProject.name='CustomDateTimePicker'
+include ':sample'
+include ':customdatetimepicker'
