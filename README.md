@@ -8,6 +8,8 @@ CustomDateTimePicker is a A simple Android library for displaying a DateAndTimeP
 ## Screenshots
 
 <img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbefore.png" width="300px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbeforetime.png
+" width="300px" />
 <img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerafter.png" width="300px" />
 
 ## Installation
