@@ -2,7 +2,7 @@
 
 # CustomDateTimePicker
 
-CustomDateTimePicker is a A simple Android library for displaying a DateAndTimePicker with From and To ranges as a CustomDateTimePicker. This custom picker allow user to pick both date and time in same dialog at same time. 
+CustomDateTimePicker is a A simple Android library for displaying a DateAndTimePicker with From and To ranges as a custom dialog. This custom picker allow user to pick both date and time in same dialog at same time. 
 
 ## Screenshots
 
