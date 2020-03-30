@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/noowenz/CustomDateTimePicker.svg)](https://jitpack.io/#noowenz/CustomDateTimePicker)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-CustomDateTimePicker-green.svg?style=flat )]( https://android-arsenal.com/details/1/8087 )
 
 # CustomDateTimePicker
 
