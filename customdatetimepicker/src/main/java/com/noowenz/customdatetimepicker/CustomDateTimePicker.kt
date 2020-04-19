@@ -16,8 +16,8 @@ import java.util.*
  * Created by nabin.
  */
 class CustomDateTimePicker(
-        private val activity: Activity,
-        customDateTimeListener: ICustomDateTimeListener
+    private val activity: Activity,
+    customDateTimeListener: ICustomDateTimeListener
 ) : View.OnClickListener {
     private var datePicker: DatePicker? = null
     private var timePicker: TimePicker? = null
@@ -47,11 +47,21 @@ class CustomDateTimePicker(
 
     private val dateTimePickerLayout: View
         get() {
-            val linearMatchWrap = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
-            val linearWrapWrap = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            val frameMatchWrap = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+            val linearMatchWrap = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+            )
+            val linearWrapWrap = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            val frameMatchWrap = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+            )
 
-            val buttonParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f)
+            val buttonParams =
+                LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f)
 
             val linearMain = LinearLayout(activity)
             linearMain.layoutParams = linearMatchWrap
@@ -93,10 +103,13 @@ class CustomDateTimePicker(
 
             datePicker = DatePicker(activity)
             timePicker = TimePicker(activity)
-            hideKeyboardInputInTimePicker(activity.resources.configuration.orientation, timePicker!!)
+            hideKeyboardInputInTimePicker(
+                activity.resources.configuration.orientation,
+                timePicker!!
+            )
 
             timePicker!!.setOnTimeChangedListener { view, hourOfDay, minute ->
-               // updateTime(hourOfDay, minute)
+                // updateTime(hourOfDay, minute)
             }
 
             viewSwitcher!!.addView(timePicker)
@@ -143,7 +156,13 @@ class CustomDateTimePicker(
     private fun updateTime(hourOfDay: Int, minute: Int) {
         if (minTimeInMinute != null) {
             val calendar = Calendar.getInstance()
-            calendar.set(datePicker?.year!!, datePicker?.month!!, datePicker?.dayOfMonth!!, hourOfDay, minute)
+            calendar.set(
+                datePicker?.year!!,
+                datePicker?.month!!,
+                datePicker?.dayOfMonth!!,
+                hourOfDay,
+                minute
+            )
 
             if (calendar.timeInMillis - Calendar.getInstance().timeInMillis >= minTimeInMinute!! * 60 * 1000) {
                 selectedHour = hourOfDay
@@ -190,9 +209,10 @@ class CustomDateTimePicker(
 
     private fun updateDisplayedDate() {
         datePicker?.updateDate(
-                calendarDate!!.get(Calendar.YEAR),
-                calendarDate!!.get(Calendar.MONTH),
-                calendarDate!!.get(Calendar.DATE))
+            calendarDate!!.get(Calendar.YEAR),
+            calendarDate!!.get(Calendar.MONTH),
+            calendarDate!!.get(Calendar.DATE)
+        )
 
         maxDateInMillis?.let {
             datePicker?.maxDate = maxDateInMillis as Long
@@ -262,10 +282,12 @@ class CustomDateTimePicker(
             if (calendarDate == null)
                 calendarDate = Calendar.getInstance()
 
-            calendarDate!!.set(calendarDate!!.get(Calendar.YEAR),
-                    calendarDate!!.get(Calendar.MONTH),
-                    calendarDate!!.get(Calendar.DAY_OF_MONTH), hourIn24Format,
-                    minute)
+            calendarDate!!.set(
+                calendarDate!!.get(Calendar.YEAR),
+                calendarDate!!.get(Calendar.MONTH),
+                calendarDate!!.get(Calendar.DAY_OF_MONTH), hourIn24Format,
+                minute
+            )
 
             is24HourView = true
         }
@@ -274,7 +296,8 @@ class CustomDateTimePicker(
     fun setTimeIn12HourFormat(_hourIn12Format: Int, minute: Int, isAM: Boolean) {
         var hourIn12Format = _hourIn12Format
         if (hourIn12Format in 1..12 && minute >= 0
-                && minute < 60) {
+            && minute < 60
+        ) {
             if (hourIn12Format == 12)
                 hourIn12Format = 0
 
@@ -286,10 +309,12 @@ class CustomDateTimePicker(
             if (calendarDate == null)
                 calendarDate = Calendar.getInstance()
 
-            calendarDate!!.set(calendarDate!!.get(Calendar.YEAR),
-                    calendarDate!!.get(Calendar.MONTH),
-                    calendarDate!!.get(Calendar.DAY_OF_MONTH), hourIn24Format,
-                    minute)
+            calendarDate!!.set(
+                calendarDate!!.get(Calendar.YEAR),
+                calendarDate!!.get(Calendar.MONTH),
+                calendarDate!!.get(Calendar.DAY_OF_MONTH), hourIn24Format,
+                minute
+            )
 
             is24HourView = false
         }
@@ -300,11 +325,13 @@ class CustomDateTimePicker(
     }
 
     interface ICustomDateTimeListener {
-        fun onSet(dialog: Dialog, calendarSelected: Calendar,
-                  dateSelected: Date, year: Int, monthFullName: String,
-                  monthShortName: String, monthNumber: Int, day: Int,
-                  weekDayFullName: String, weekDayShortName: String, hour24: Int,
-                  hour12: Int, min: Int, sec: Int, AM_PM: String)
+        fun onSet(
+            dialog: Dialog, calendarSelected: Calendar,
+            dateSelected: Date, year: Int, monthFullName: String,
+            monthShortName: String, monthNumber: Int, day: Int,
+            weekDayFullName: String, weekDayShortName: String, hour24: Int,
+            hour12: Int, min: Int, sec: Int, AM_PM: String
+        )
 
         fun onCancel()
     }
@@ -341,24 +368,27 @@ class CustomDateTimePicker(
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         updateTime(timePicker!!.hour, timePicker!!.minute)
-                    } else{
+                    } else {
                         updateTime(timePicker!!.currentHour, timePicker!!.currentMinute)
                     }
                     calendarDate!!.set(year, month, day, selectedHour, selectedMinute)
-                    iCustomDateTimeListener!!.onSet(dialog, calendarDate!!,
-                            calendarDate!!.time,
-                            calendarDate!!.get(Calendar.YEAR),
-                            getMonthFullName(calendarDate!!.get(Calendar.MONTH)),
-                            getMonthShortName(calendarDate!!.get(Calendar.MONTH)),
-                            calendarDate!!.get(Calendar.MONTH),
-                            calendarDate!!.get(Calendar.DAY_OF_MONTH),
-                            getWeekDayFullName(calendarDate!!.get(Calendar.DAY_OF_WEEK)),
-                            getWeekDayShortName(calendarDate!!.get(Calendar.DAY_OF_WEEK)),
-                            calendarDate!!.get(Calendar.HOUR_OF_DAY),
-                            getHourIn12Format(calendarDate!!.get(Calendar.HOUR_OF_DAY)),
-                            calendarDate!!.get(Calendar.MINUTE),
-                            calendarDate!!.get(Calendar.SECOND),
-                            getAMPM(calendarDate!!))
+                    iCustomDateTimeListener!!.onSet(
+                        dialog = dialog,
+                        calendarSelected = calendarDate!!,
+                        dateSelected = calendarDate!!.time,
+                        year = calendarDate!!.get(Calendar.YEAR),
+                        monthFullName = getMonthFullName(calendarDate!!.get(Calendar.MONTH)),
+                        monthShortName = getMonthShortName(calendarDate!!.get(Calendar.MONTH)),
+                        monthNumber = calendarDate!!.get(Calendar.MONTH),
+                        day = calendarDate!!.get(Calendar.DAY_OF_MONTH),
+                        weekDayFullName = getWeekDayFullName(calendarDate!!.get(Calendar.DAY_OF_WEEK)),
+                        weekDayShortName = getWeekDayShortName(calendarDate!!.get(Calendar.DAY_OF_WEEK)),
+                        hour24 = if (is24HourView) calendarDate!!.get(Calendar.HOUR_OF_DAY) else 0,
+                        hour12 = getHourIn12Format(calendarDate!!.get(Calendar.HOUR_OF_DAY)),
+                        min = calendarDate!!.get(Calendar.MINUTE),
+                        sec = calendarDate!!.get(Calendar.SECOND),
+                        AM_PM = getAMPM(calendarDate!!)
+                    )
                 }
                 if (dialog.isShowing && isAutoDismiss)
                     dialog.dismiss()
@@ -478,9 +508,13 @@ class CustomDateTimePicker(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
                 if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    ((timePicker.getChildAt(0) as LinearLayout).getChildAt(4) as LinearLayout).getChildAt(0).visibility = View.GONE
+                    ((timePicker.getChildAt(0) as LinearLayout).getChildAt(4) as LinearLayout).getChildAt(
+                        0
+                    ).visibility = View.GONE
                 } else {
-                    (((timePicker.getChildAt(0) as LinearLayout).getChildAt(2) as LinearLayout).getChildAt(2) as LinearLayout).getChildAt(0).visibility = View.GONE
+                    (((timePicker.getChildAt(0) as LinearLayout).getChildAt(2) as LinearLayout).getChildAt(
+                        2
+                    ) as LinearLayout).getChildAt(0).visibility = View.GONE
                 }
             } catch (ex: Exception) {
             }
