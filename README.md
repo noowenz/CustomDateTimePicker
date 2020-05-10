@@ -6,37 +6,43 @@ CustomDateTimePicker is a A simple Android library for displaying a DateAndTimeP
 
 ## Screenshots
 
-<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbefore.png" width="300px" />
-<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbeforetime.png" width="300px" />
-<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerafter.png" width="300px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbefore.png" width="250px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerbeforetime.png" width="250px" />
+<img src="https://github.com/noowenz/CustomDateTimePicker/blob/master/art/customdatetimepickerafter.png" width="250px" />
 
 ## Installation
 
 Add Jitpack to your project build.gralde file
       
-      allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+```Kotlin
+allprojects {
+   repositories {
+      ...
+      maven { url 'https://jitpack.io' }
+   }
 }
+```
 
 Then add this dependency to your app build.gradle file.
 
-      dependencies {
-	     implementation 'https://github.com/noowenz/CustomDateTimePicker:latest-release'
-	     //like: implementation 'com.github.noowenz:CustomDateTimePicker:1.01'
-	}
+```Kotlin
+dependencies {
+   implementation 'https://github.com/noowenz/CustomDateTimePicker:latest-release'
+   Or
+   implementation 'com.github.noowenz:CustomDateTimePicker:1.01'
+}
+```
 
 ## Usage
 
 Make sure your Activity/Fragment implements `ICustomDateTimeListener`, and then you 
 can just do this:
       
-	CustomDateTimePicker(this)
-		.setDate( Calendar.getInstance())
-		.showDialog()
+```Kotlin
+CustomDateTimePicker(this)
+	.setDate(Calendar.getInstance())
+	.showDialog()
+```
 		    
 You can see this in action in the sample app [here](https://github.com/noowenz/CustomDateTimePicker/blob/master/sample/src/main/java/com/noowenz/customdatetimepicker/MainActivity.kt)
 
@@ -44,32 +50,32 @@ You can see this in action in the sample app [here](https://github.com/noowenz/C
       
 You can customize things like bellow
 
-	  CustomDateTimePicker(this, object : CustomDateTimePicker.ICustomDateTimeListener {
-            @SuppressLint("BinaryOperationInTimber")
-            override fun onSet(
-                dialog: Dialog,
-                calendarSelected: Calendar,
-                dateSelected: Date,
-                year: Int,
-                monthFullName: String,
-                monthShortName: String,
-                monthNumber: Int,
-                day: Int,
-                weekDayFullName: String,
-                weekDayShortName: String,
-                hour24: Int,
-                hour12: Int,
-                min: Int,
-                sec: Int,
-                AM_PM: String
-            ) {
-                //Get any time of date and time data here and process further...
-            }
+```Kotlin
+CustomDateTimePicker(this, object : CustomDateTimePicker.ICustomDateTimeListener {
+   	@SuppressLint("BinaryOperationInTimber")
+        override fun onSet(
+              dialog: Dialog,
+              calendarSelected: Calendar,
+              dateSelected: Date,
+              year: Int,
+              monthFullName: String,
+              monthShortName: String,
+              monthNumber: Int,
+              day: Int,
+              weekDayFullName: String,
+              weekDayShortName: String,
+              hour24: Int,
+              hour12: Int,
+              min: Int,
+              sec: Int,
+              AM_PM: String
+	) {
+          //Get any time of date and time data here and process further...
+          }
 
-            override fun onCancel() {
-               
-            }
-        }).apply {
+	override fun onCancel() {
+        }
+}).apply {
             set24HourFormat(false)//24hr format is off
             setMaxMinDisplayDate(
                 minDate = Calendar.getInstance().apply { add(Calendar.MINUTE, 5) }.timeInMillis,//min date is 5 min after current time
@@ -78,7 +84,8 @@ You can customize things like bellow
             setMaxMinDisplayedTime(5)//min time is 5 min after current time
             setDate(Calendar.getInstance())//date and time will show in dialog is current time and date. We can change this according to our need
             showDialog()
-        }
+}
+```
 
 ## License
 
