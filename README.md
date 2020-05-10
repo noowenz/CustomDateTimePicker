@@ -25,7 +25,8 @@ Add Jitpack to your project build.gralde file
 Then add this dependency to your app build.gradle file.
 
       dependencies {
-	        implementation 'https://github.com/noowenz/CustomDateTimePicker:latest-release'
+	     implementation 'https://github.com/noowenz/CustomDateTimePicker:latest-release'
+	     //like: implementation 'com.github.noowenz:CustomDateTimePicker:1.01'
 	}
 
 ## Usage
