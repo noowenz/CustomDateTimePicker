@@ -16,7 +16,7 @@ import java.util.*
  * Created by nabin.
  */
 class CustomDateTimePicker(
-    private val activity: Activity,
+    private var activity: Activity?,
     customDateTimeListener: ICustomDateTimeListener
 ) : View.OnClickListener {
     private var datePicker: DatePicker? = null
@@ -88,7 +88,7 @@ class CustomDateTimePicker(
             btnSetTime = Button(activity)
             btnSetTime?.apply {
                 layoutParams = buttonParams
-                text = activity.getString(R.string.setTime)
+                text = activity?.getString(R.string.setTime)
                 id = SET_TIME
                 setTextColor(ContextCompat.getColor(context, R.color.colorBlack))
                 background = context.getDrawable(R.color.colorTransparent)
@@ -104,7 +104,7 @@ class CustomDateTimePicker(
             datePicker = DatePicker(activity)
             timePicker = TimePicker(activity)
             hideKeyboardInputInTimePicker(
-                activity.resources.configuration.orientation,
+                activity?.resources?.configuration?.orientation!!,
                 timePicker!!
             )
 
@@ -122,7 +122,7 @@ class CustomDateTimePicker(
             btnSet = Button(activity)
             btnSet?.apply {
                 layoutParams = buttonParams
-                text = activity.getString(R.string.set)
+                text = activity?.getString(R.string.set)
                 id = SET
                 isAllCaps = false
                 setTextColor(ContextCompat.getColor(context, R.color.colorBlack))
@@ -133,7 +133,7 @@ class CustomDateTimePicker(
             btnCancel = Button(activity)
             btnCancel?.apply {
                 layoutParams = buttonParams
-                text = activity.getString(R.string.cancel)
+                text = activity?.getString(R.string.cancel)
                 id = CANCEL
                 isAllCaps = false
                 setTextColor(ContextCompat.getColor(context, R.color.colorBlack))
@@ -182,7 +182,7 @@ class CustomDateTimePicker(
     init {
         iCustomDateTimeListener = customDateTimeListener
 
-        dialog = Dialog(activity)
+        dialog = Dialog(activity!!)
         dialog.setOnDismissListener { resetData() }
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -204,6 +204,11 @@ class CustomDateTimePicker(
 
             dialog.show()
             btnSetDate!!.performClick()
+
+            dialog.setOnCancelListener {
+                if (activity != null)
+                    activity = null
+            }
         }
     }
 
@@ -341,8 +346,8 @@ class CustomDateTimePicker(
             SET_DATE -> {
                 btnSetTime!!.isEnabled = true
                 btnSetDate!!.isEnabled = false
-                btnSetDate!!.setTextColor(ContextCompat.getColor(activity, R.color.colorPrimary))
-                btnSetTime!!.setTextColor(ContextCompat.getColor(activity, R.color.colorBlack))
+                btnSetDate!!.setTextColor(ContextCompat.getColor(activity!!, R.color.colorPrimary))
+                btnSetTime!!.setTextColor(ContextCompat.getColor(activity!!, R.color.colorBlack))
 
                 if (viewSwitcher!!.currentView !== datePicker) {
                     viewSwitcher!!.showPrevious()
@@ -352,8 +357,8 @@ class CustomDateTimePicker(
             SET_TIME -> {
                 btnSetTime!!.isEnabled = false
                 btnSetDate!!.isEnabled = true
-                btnSetDate!!.setTextColor(ContextCompat.getColor(activity, R.color.colorBlack))
-                btnSetTime!!.setTextColor(ContextCompat.getColor(activity, R.color.colorPrimary))
+                btnSetDate!!.setTextColor(ContextCompat.getColor(activity!!, R.color.colorBlack))
+                btnSetTime!!.setTextColor(ContextCompat.getColor(activity!!, R.color.colorPrimary))
 
                 if (viewSwitcher!!.currentView === datePicker) {
                     viewSwitcher!!.showNext()
@@ -392,6 +397,8 @@ class CustomDateTimePicker(
                 }
                 if (dialog.isShowing && isAutoDismiss)
                     dialog.dismiss()
+                if (activity != null)
+                    activity = null
             }
 
             CANCEL -> {
@@ -399,6 +406,8 @@ class CustomDateTimePicker(
                     iCustomDateTimeListener!!.onCancel()
                 if (dialog.isShowing)
                     dialog.dismiss()
+                if (activity != null)
+                    activity = null
             }
         }
     }
